@@ -7,6 +7,7 @@ from binance.client import Client
 from datetime import datetime
 import warnings
 import time
+import os
 
 warnings.filterwarnings("ignore")
 
@@ -14,21 +15,10 @@ warnings.filterwarnings("ignore")
 
 def FULL_RUN():
 
-    #BRYONY
-    api_key                 = 'JJoa7QdR28rHMeBrfUSrEbcnMj49fG8Dulw5EvH78NBmIQE8khBqpr13gFNOFhFQ'
-    api_secret              = '5Ld8Oy7NdhKz4uubSgNDKTwKODLt7jdOIojxPBgzTTHnewDoKvvjv4R3AyB0xiSM'
-
-    #WES
-    #api_key                 = 'wSWDRahsJKzs7ev4OqNsE03I3zNjOqKTriD57WUnIQJT5JDuZ7nZHMTh8bmkIRhb'
-    #api_secret              = '8wyJh1oqU9sAnfe2votXvnS5Np7HpeYqn2j51zMwgzmM5fCUPVrFV9PcxvsI2LvL'
+    client                      = Client(os.environ.get("BRYONY_API"), os.environ.get("BRYONY_SECRET"))
     
-    client                  = Client(api_key, api_secret)
-
-    HOUR_CONDITIONS = {"COIN"              : 'ETHUSDT',  
-                       "LEVERAGE"          : 5}
-
-
-
+    HOUR_CONDITIONS             = {"COIN"              : 'ETHUSDT',  
+                                   "LEVERAGE"          : 5}
 
     DONE = 'NO'
     while DONE == 'NO':

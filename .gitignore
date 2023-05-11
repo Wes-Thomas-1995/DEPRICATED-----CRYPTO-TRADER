@@ -1,0 +1,13 @@
+
+BRYONY_API             = 'JJoa7QdR28rHMeBrfUSrEbcnMj49fG8Dulw5EvH78NBmIQE8khBqpr13gFNOFhFQ'
+BRYONY_SECRET          = '5Ld8Oy7NdhKz4uubSgNDKTwKODLt7jdOIojxPBgzTTHnewDoKvvjv4R3AyB0xiSM'
+WES_API                = 'wSWDRahsJKzs7ev4OqNsE03I3zNjOqKTriD57WUnIQJT5JDuZ7nZHMTh8bmkIRhb'
+WES_SECRET             = '8wyJh1oqU9sAnfe2votXvnS5Np7HpeYqn2j51zMwgzmM5fCUPVrFV9PcxvsI2LvL'
+
+POSTGRES_ENGINE        = 'postgresql://postgres:Button0104@localhost:5432/ENKI_STOCK_PORTFOLIO'
+
+DB_1                   = 'ucts_trade_history_portfolio'
+DB_2                   = 'ucts_portfolio_balance_history'
+DB_3                   = 'ellipse_trade_history_portfolio'
+DB_4                   = 'ellipse_portfolio_balance_history'
+

@@ -44,8 +44,6 @@ class LONG_TERM():
             if self.DF_LT.at[len(self.DF_LT)-1, 'DAY NUMBER'] in self.REFERENCE_DAYS:
                 for i in range(len(self.DF_LT)):
                     if self.DF_LT.at[i, 'COMMENT'] == "LONG - EXIT" or self.DF_LT.at[i, 'COMMENT'] == "SHORT - EXIT":
-                        #if length = 1 then go to sleep for 3 seconds and go re-obtain the dataframe as it should have reloaded.
-                        #else do next shit
                         self.DF_LT = self.DF_LT.drop(i)
 
                 self.DF_LT = self.DF_LT.reset_index()        

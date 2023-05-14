@@ -4,6 +4,7 @@ from binance.enums import *
 
 
 from BINANCE_OBJ import CLOSE_POSITION, OPEN_POSITIONS, SIZE_2, FINISH_TRADE_VIEWS, CREATE_ORDER, CREATE_TP_AND_SL, GET_BALANCE
+from GOOGLE_SHEET import GOOGLE_SHEET_DATAFRAME
 
 from datetime import datetime, timedelta, date
 import pandas as pd
@@ -44,14 +45,20 @@ class LONG_TERM():
             if self.DF_LT.at[len(self.DF_LT)-1, 'DAY NUMBER'] in self.REFERENCE_DAYS:
                 for i in range(len(self.DF_LT)):
                     if self.DF_LT.at[i, 'COMMENT'] == "LONG - EXIT" or self.DF_LT.at[i, 'COMMENT'] == "SHORT - EXIT":
-                        #if length = 1 then go to sleep for 3 seconds and go re-obtain the dataframe as it should have reloaded.
-                        #else do next shit
-                        self.DF_LT = self.DF_LT.drop(i)
+                        if len(self.DF_LT) == 1:
+                            time.sleep(3)
+                            GOOGLE_SHEET_DATA = GOOGLE_SHEET_DATAFRAME(self.COIN) 
+                            self.DF_LT = GOOGLE_SHEET_DATA.DF_LT
+                            self.DF_LT = self.DF_LT[self.DF_LT['TIME_RELATIVE'] == (datetime.now().replace(second=0, microsecond=0))].reset_index()
+                            for i in range(len(self.DF_LT)):
+                                if self.DF_LT.at[i, 'COMMENT'] == "LONG - EXIT" or self.DF_LT.at[i, 'COMMENT'] == "SHORT - EXIT":
+                                    self.DF_LT = self.DF_LT.drop(i)
+                        else:
+                            self.DF_LT = self.DF_LT.drop(i)
 
                 self.DF_LT = self.DF_LT.reset_index()        
 
                 if self.DF_LT.at[len(self.DF_LT)-1, 'COMMENT'] != "LONG - EXIT TP" or self.DF_LT.at[len(self.DF_LT)-1, 'COMMENT'] != "SHORT - EXIT TP":
-
                     OPEN_POS = OPEN_POSITIONS(self.client, self.COIN)
 
                     if len(OPEN_POS.POS_DF) != 0:

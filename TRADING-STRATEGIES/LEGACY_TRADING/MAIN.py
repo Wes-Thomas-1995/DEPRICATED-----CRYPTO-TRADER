@@ -20,8 +20,8 @@ import os
 
 warnings.filterwarnings("ignore")
 
-api_key                 = 'wSWDRahsJKzs7ev4OqNsE03I3zNjOqKTriD57WUnIQJT5JDuZ7nZHMTh8bmkIRhb'
-api_secret              = '8wyJh1oqU9sAnfe2votXvnS5Np7HpeYqn2j51zMwgzmM5fCUPVrFV9PcxvsI2LvL'
+api_key                 = 'XXXXXXXXX'
+api_secret              = 'XXXXXXXXX'
 client                  = Client(api_key, api_secret)
 
 
